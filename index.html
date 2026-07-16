@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malinda Perera — Actor · Founder, Z+ Productions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Work+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14110e;
+    --bg-alt:#1d1812;
+    --bg-raise:#241d15;
+    --ink:#f3e9d7;
+    --ink-dim:#b6a890;
+    --ink-faint:#7a6f5c;
+    --gold:#c89b3c;
+    --gold-bright:#e4bb5c;
+    --lacquer:#8f3327;
+    --line:rgba(243,233,215,0.12);
+    --line-strong:rgba(243,233,215,0.22);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 40px;
+  }
+
+  ::selection{background:var(--gold); color:var(--bg);}
+
+  /* ---------- texture ---------- */
+  .grain{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:0.05;
+    z-index:999;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    background:linear-gradient(to bottom, rgba(20,17,14,0.92), rgba(20,17,14,0));
+    padding:26px 0 40px;
+  }
+  nav.wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:19px;
+    letter-spacing:0.02em;
+  }
+  .navlinks{
+    display:flex;
+    gap:36px;
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+  }
+  .navlinks a{
+    text-decoration:none;
+    transition:color 0.25s ease;
+    position:relative;
+  }
+  .navlinks a:hover, .navlinks a:focus-visible{color:var(--gold-bright);}
+  .navlinks a:focus-visible{outline:1px solid var(--gold); outline-offset:4px;}
+
+  @media (max-width:720px){
+    .navlinks{display:none;}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:flex-end;
+    padding-top:110px;
+    padding-bottom:0;
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+
+  .hero-photo{
+    position:absolute;
+    inset:0;
+    z-index:0;
+  }
+  .hero-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:50% 20%;
+    display:block;
+    filter:saturate(1.05) contrast(1.03);
+    opacity:0;
+    animation:photoIn 1.4s ease forwards 0.05s;
+  }
+  @keyframes photoIn{
+    from{opacity:0; transform:scale(1.04);}
+    to{opacity:1; transform:scale(1);}
+  }
+  .hero-photo::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(to top, var(--bg) 0%, rgba(20,17,14,0.55) 32%, rgba(20,17,14,0.05) 58%, rgba(20,17,14,0.35) 100%),
+      linear-gradient(to right, rgba(20,17,14,0.75) 0%, rgba(20,17,14,0.15) 38%, transparent 60%);
+  }
+
+  .hero-grid{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:40px;
+    align-items:end;
+    width:100%;
+    padding-bottom:72px;
+  }
+
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:28px;
+    opacity:0;
+    animation:rise 0.9s ease forwards 0.15s;
+  }
+  .eyebrow::before{
+    content:"";
+    width:34px;
+    height:1px;
+    background:var(--gold);
+  }
+
+  h1.name{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-optical-sizing:auto;
+    font-size:clamp(52px, 8.4vw, 118px);
+    line-height:0.94;
+    letter-spacing:-0.01em;
+    opacity:0;
+    animation:rise 0.9s ease forwards 0.3s;
+  }
+  h1.name em{
+    font-style:italic;
+    font-weight:400;
+    color:var(--gold-bright);
+  }
+
+  .role-line{
+    margin-top:26px;
+    font-size:18px;
+    color:var(--ink-dim);
+    max-width:480px;
+    opacity:0;
+    animation:rise 0.9s ease forwards 0.45s;
+  }
+  .role-line strong{color:var(--ink); font-weight:500;}
+
+  .hero-cta{
+    margin-top:40px;
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    opacity:0;
+    animation:rise 0.9s ease forwards 0.6s;
+  }
+
+  .btn{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    text-decoration:none;
+    padding:14px 26px;
+    border-radius:2px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    transition:all 0.3s ease;
+  }
+  .btn-solid{
+    background:var(--gold);
+    color:var(--bg);
+    border:1px solid var(--gold);
+  }
+  .btn-solid:hover{background:var(--gold-bright); border-color:var(--gold-bright);}
+  .btn-ghost{
+    border:1px solid var(--line-strong);
+    color:var(--ink);
+  }
+  .btn-ghost:hover{border-color:var(--gold); color:var(--gold-bright);}
+
+  /* signature ornament: abstract crown/flame motif line art */
+  .ornament-wrap{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    opacity:0;
+    animation:fade 1.2s ease forwards 0.5s;
+  }
+  .ornament-wrap svg{
+    width:100%;
+    max-width:380px;
+    height:auto;
+    overflow:visible;
+  }
+  .orn-line{
+    fill:none;
+    stroke:var(--gold);
+    stroke-width:1.1;
+    opacity:0.85;
+  }
+  .orn-fill{
+    fill:var(--lacquer);
+    opacity:0.55;
+  }
+  .orn-dot{
+    fill:var(--gold-bright);
+  }
+
+  @keyframes rise{
+    from{opacity:0; transform:translateY(22px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @keyframes fade{
+    from{opacity:0; transform:scale(0.94);}
+    to{opacity:1; transform:scale(1);}
+  }
+
+  .scroll-cue{
+    position:absolute;
+    bottom:36px;
+    left:40px;
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.12em;
+    color:var(--ink-faint);
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .scroll-cue .stem{
+    width:1px;
+    height:34px;
+    background:linear-gradient(var(--gold), transparent);
+  }
+
+  /* ---------- section shared ---------- */
+  section{
+    padding:120px 0;
+    border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    margin-bottom:64px;
+    flex-wrap:wrap;
+  }
+  .section-label{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+  h2.section-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(32px, 4vw, 46px);
+    margin-top:10px;
+    max-width:560px;
+  }
+  .section-note{
+    font-size:14px;
+    color:var(--ink-faint);
+    max-width:280px;
+    text-align:right;
+  }
+  @media (max-width:720px){
+    .section-note{text-align:left;}
+  }
+
+  /* ---------- about ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.4fr;
+    gap:70px;
+  }
+  .about-figure{
+    position:relative;
+  }
+  .about-figure .plate{
+    aspect-ratio:3/4;
+    border:1px solid var(--line-strong);
+    background:
+      repeating-linear-gradient(135deg, rgba(200,155,60,0.05) 0 2px, transparent 2px 22px),
+      var(--bg-alt);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .about-figure .plate::before{
+    content:"";
+    position:absolute;
+    inset:18px;
+    border:1px solid var(--line);
+  }
+  .plate-mark{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:15px;
+    color:var(--ink-faint);
+    letter-spacing:0.02em;
+    text-align:center;
+    padding:0 20px;
+  }
+  .plate-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:50% 15%;
+    filter:saturate(1.05) contrast(1.03);
+    position:relative;
+    z-index:0;
+  }
+  .orn-small{
+    position:absolute;
+    width:64px;
+    height:auto;
+    bottom:-24px;
+    right:-24px;
+    z-index:2;
+  }
+  .orn-small .orn-line{stroke-width:1.4;}
+  .about-text p{
+    font-size:17px;
+    color:var(--ink-dim);
+    margin-bottom:22px;
+    max-width:56ch;
+  }
+  .about-text p strong{color:var(--ink); font-weight:500;}
+
+  .stat-row{
+    display:flex;
+    gap:48px;
+    margin-top:44px;
+    flex-wrap:wrap;
+  }
+  .stat{
+    border-left:1px solid var(--line-strong);
+    padding-left:18px;
+  }
+  .stat .num{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:34px;
+    color:var(--gold-bright);
+    display:block;
+  }
+  .stat .lbl{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+
+  /* ---------- filmography ---------- */
+  .bill{
+    display:flex;
+    flex-direction:column;
+  }
+  .bill-row{
+    display:grid;
+    grid-template-columns:80px 1fr auto;
+    align-items:center;
+    gap:24px;
+    padding:26px 0;
+    border-top:1px solid var(--line);
+    transition:background 0.3s ease;
+  }
+  .bill-row:last-child{border-bottom:1px solid var(--line);}
+  .bill-row:hover{background:rgba(200,155,60,0.04);}
+
+  .bill-index{
+    font-family:'Space Mono', monospace;
+    font-size:13px;
+    color:var(--ink-faint);
+  }
+  .bill-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(22px, 2.6vw, 30px);
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .bill-title .native{
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    font-size:14px;
+    color:var(--ink-faint);
+  }
+  .award{
+    font-family:'Space Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--bg);
+    background:var(--gold-bright);
+    padding:5px 10px;
+    border-radius:2px;
+    white-space:nowrap;
+  }
+  .bill-tag{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    text-align:right;
+  }
+
+  /* ---------- production ---------- */
+  .zplus{
+    background:var(--bg-alt);
+  }
+  .zplus-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
+  }
+  .zplus-mark{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:clamp(80px, 12vw, 160px);
+    line-height:0.85;
+    color:transparent;
+    -webkit-text-stroke:1.5px var(--gold);
+    letter-spacing:-0.02em;
+  }
+  .zplus-mark span{
+    color:var(--gold-bright);
+    -webkit-text-stroke:0;
+  }
+  .zplus-text p{
+    font-size:17px;
+    color:var(--ink-dim);
+    margin-bottom:20px;
+    max-width:52ch;
+  }
+  .zplus-text p strong{color:var(--ink); font-weight:500;}
+  .zplus-list{
+    margin-top:30px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .zplus-list li{
+    list-style:none;
+    display:flex;
+    gap:14px;
+    align-items:baseline;
+    font-size:14.5px;
+    color:var(--ink-dim);
+  }
+  .zplus-list li::before{
+    content:"";
+    width:6px; height:6px;
+    background:var(--gold);
+    border-radius:50%;
+    flex-shrink:0;
+    transform:translateY(-2px);
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:80px 0 50px;
+  }
+  .footer-grid{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:40px;
+  }
+  .footer-name{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:26px;
+  }
+  .footer-links{
+    display:flex;
+    gap:30px;
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  .footer-links a{
+    text-decoration:none;
+    color:var(--ink-dim);
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+    transition:all 0.25s ease;
+  }
+  .footer-links a:hover{color:var(--gold-bright); border-color:var(--gold-bright);}
+  .footer-meta{
+    margin-top:50px;
+    display:flex;
+    justify-content:space-between;
+    color:var(--ink-faint);
+    font-size:12px;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  @media (max-width:860px){
+    .wrap{padding:0 24px;}
+    .about-grid, .zplus-grid{grid-template-columns:1fr;}
+    .bill-row{grid-template-columns:44px 1fr; row-gap:8px;}
+    .bill-tag{grid-column:1 / -1; text-align:left;}
+    section{padding:80px 0;}
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">M. PERERA</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#work">Filmography</a>
+      <a href="#zplus">Z+ Productions</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-photo">
+    <img src="images/malinda-hero.jpg" alt="Malinda Perera in costume as a warrior character, holding a jewelled dagger raised, on a period film set">
+  </div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Sri Lankan Actor &amp; Producer</div>
+      <h1 class="name">Malinda<br><em>Perera</em></h1>
+      <p class="role-line">Actor across Sinhala cinema and teledrama, known for roles spanning historical epics to contemporary drama. <strong>Founder, Z+ Productions.</strong></p>
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="#work">View Filmography</a>
+        <a class="btn btn-ghost" href="https://www.imdb.com/name/nm9461509/" target="_blank" rel="noopener">IMDb Profile</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span class="stem"></span>Scroll</div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-figure">
+      <div class="plate">
+        <img src="images/malinda-hero.jpg" alt="Malinda Perera in character, in period costume with a jewelled neckpiece" class="plate-img">
+      </div>
+      <svg class="orn-small" viewBox="0 0 300 340" aria-hidden="true">
+        <path class="orn-line" d="M150 20 C 110 45, 95 90, 110 130 C 65 145, 40 190, 55 240 C 70 285, 115 315, 150 330 C 185 315, 230 285, 245 240 C 260 190, 235 145, 190 130 C 205 90, 190 45, 150 20 Z"/>
+        <path class="orn-line" d="M90 150 C 120 165, 180 165, 210 150"/>
+        <circle class="orn-dot" cx="150" cy="45" r="4"/>
+      </svg>
+    </div>
+    <div class="about-text">
+      <div class="section-label">About</div>
+      <h2 class="section-title">A career built on stage discipline and screen range</h2>
+      <p>Malinda Perera is a Sri Lankan actor working across film and teledrama, recognised early with a <strong>Best Upcoming Actor</strong> award for his role in <strong>Kanda Lihiniya</strong>. His subsequent work moves between large-scale historical narrative and grounded contemporary drama.</p>
+      <p>Beyond performance, he is the <strong>founder of Z+ Productions</strong>, a venture through which he develops and produces original screen work alongside his acting career.</p>
+      <div class="stat-row">
+        <div class="stat"><span class="num">8</span><span class="lbl">Featured Works</span></div>
+        <div class="stat"><span class="num">1</span><span class="lbl">Best Upcoming Actor</span></div>
+        <div class="stat"><span class="num">Z+</span><span class="lbl">Productions, Founder</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-label">Selected Filmography</div>
+        <h2 class="section-title">Works</h2>
+      </div>
+      <p class="section-note">A selection of film and teledrama credits, in no particular chronology.</p>
+    </div>
+
+    <div class="bill">
+      <div class="bill-row">
+        <span class="bill-index">01</span>
+        <span class="bill-title">Kanda Lihiniya</span>
+        <span class="award">Best Upcoming Actor</span>
+      </div>
+      <div class="bill-row">
+        <span class="bill-index">02</span>
+        <span class="bill-title">Gemunu Maharaja</span>
+        <span class="bill-tag">Historical Epic</span>
+      </div>
+      <div class="bill-row">
+        <span class="bill-index">03</span>
+        <span class="bill-title">Chakrayudhaya</span>
+        <span class="bill-tag">Drama</span>
+      </div>
+      <div class="bill-row">
+        <span class="bill-index">04</span>
+        <span class="bill-title">Mahatala Hatana</span>
+        <span class="bill-tag">Historical</span>
+      </div>
+      <div class="bill-row">
+        <span class="bill-index">05</span>
+        <span class="bill-title">Devi Kusumasana</span>
+        <span class="bill-tag">Teledrama</span>
+      </div>
+      <div class="bill-row">
+        <span class="bill-index">06</span>
+        <span class="bill-title">Me Soduru Piyapath</span>
+        <span class="bill-tag">Teledrama</span>
+      </div>
+      <div class="bill-row">
+        <span class="bill-index">07</span>
+        <span class="bill-title">Paba</span>
+        <span class="bill-tag">Drama</span>
+      </div>
+      <div class="bill-row">
+        <span class="bill-index">08</span>
+        <span class="bill-title">Mayawi</span>
+        <span class="bill-tag">Drama</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="zplus" class="zplus">
+  <div class="wrap zplus-grid">
+    <div class="zplus-mark">Z<span>+</span></div>
+    <div class="zplus-text">
+      <div class="section-label">Production</div>
+      <h2 class="section-title">Z+ Productions</h2>
+      <p>Malinda Perera is the <strong>founder of Z+ Productions</strong>, a Sri Lankan production venture built alongside his acting career to develop original screen work.</p>
+      <p>The company reflects his continued involvement in Sinhala film and television beyond performance, spanning development and production.</p>
+      <ul class="zplus-list">
+        <li>Founded and led by Malinda Perera</li>
+        <li>Focused on Sri Lankan film and television production</li>
+        <li>Extension of his work as a performer into production</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-name">Malinda Perera</div>
+      <div class="footer-links">
+        <a href="https://www.imdb.com/name/nm9461509/" target="_blank" rel="noopener">IMDb</a>
+        <a href="#work">Filmography</a>
+        <a href="#zplus">Z+ Productions</a>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>Sri Lankan Actor · Founder, Z+ Productions</span>
+      <span>Page built as a fan/portfolio reference</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
